@@ -19,7 +19,7 @@ public class Payment {
     private Long id;
 
     @Column(nullable = false)
-    private Long OrderId;
+    private Long orderId;
 
     @Column(nullable = false,precision = 12,scale = 2)
     private BigDecimal amount;

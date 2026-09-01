@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 public class PaymentResponseDTO {
 
     private Long id;
-    private Long OrderId;
+    private Long orderId;
     private BigDecimal amount;
     private PaymentMethod paymentMethod;
     private PaymentStatus paymentStatus;

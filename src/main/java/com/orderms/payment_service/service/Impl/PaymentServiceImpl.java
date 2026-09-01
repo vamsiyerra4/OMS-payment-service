@@ -3,6 +3,7 @@ package com.orderms.payment_service.service.Impl;
 import com.orderms.payment_service.dto.PaymentRequestDTO;
 import com.orderms.payment_service.dto.PaymentResponseDTO;
 import com.orderms.payment_service.entity.Payment;
+import com.orderms.payment_service.entity.PaymentStatus;
 import com.orderms.payment_service.exception.InvalidPaymentException;
 import com.orderms.payment_service.exception.PaymentNotFoundException;
 import com.orderms.payment_service.mapper.PaymentMapper;
@@ -24,10 +25,11 @@ public class PaymentServiceImpl implements PaymentService {
     public PaymentResponseDTO createPayment(PaymentRequestDTO paymentRequestDTO) {
 
         if(paymentRequestDTO.getAmount().signum() <= 0){
-            throw new IllegalArgumentException("Payment must be greater than 0");
+            throw new InvalidPaymentException("Payment must be greater than 0");
         }
 
         Payment payment = paymentMapper.toEntity(paymentRequestDTO);
+        payment.setPaymentStatus(PaymentStatus.SUCCESS);
         Payment savedPayment = paymentRepository.save(payment);
         return paymentMapper.toResponseDTO(savedPayment);
     }
