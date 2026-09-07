@@ -1,25 +1,14 @@
+server:
+  port: 8084
+
 spring:
   application:
     name: payment-service
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/payment_db
-    username: vamsi
-    password:
-    driver-class-name: org.postgresql.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql : true
-
-server:
-  port: 8084
+  config:
+    import: optional:configserver:http://localhost:8888
 
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,metrics,info
+
+
 
